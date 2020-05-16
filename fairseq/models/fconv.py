@@ -167,14 +167,14 @@ class FConvEncoder(FairseqEncoder):
         )
 
         convolutions = extend_conv_spec(convolutions)
-        in_channels = convolutions[0][0]
+        in_channels = convolutions[0][0] # 512
         self.fc1 = Linear(embed_dim, in_channels, dropout=dropout)
         self.projections = nn.ModuleList()
         self.convolutions = nn.ModuleList()
         self.residuals = []
 
         layer_in_channels = [in_channels]
-        for _, (out_channels, kernel_size, residual) in enumerate(convolutions):
+        for _, (out_channels, kernel_size, residual) in enumerate(convolutions): # (512, 3, 1)
             if residual == 0:
                 residual_dim = out_channels
             else:

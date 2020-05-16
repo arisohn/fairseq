@@ -17,8 +17,8 @@ class ConvTBC(torch.nn.Module):
         super(ConvTBC, self).__init__()
         self.in_channels = in_channels
         self.out_channels = out_channels
-        self.kernel_size = _single(kernel_size)
-        self.padding = _single(padding)
+        self.kernel_size = _single(kernel_size) # (kernel_size, )
+        self.padding = _single(padding)         # (padding, )
 
         self.weight = torch.nn.Parameter(torch.Tensor(
             self.kernel_size[0], in_channels, out_channels))
